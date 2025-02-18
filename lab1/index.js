@@ -1,115 +1,108 @@
 function triangle(value1, type1, value2, type2) {
-  const validTypes = ["leg", "hypotenuse", "adjacent angle", "opposite angle", "angle"];
+  const toRadians = (deg) => deg * (Math.PI / 180);
+  const toDegrees = (rad) => rad * (180 / Math.PI);
 
-  // Перевірка на нульові або від'ємні значення
-  if (typeof value1 !== "number" || typeof value2 !== "number" || value1 <= 0 || value2 <= 0) {
-    console.log("Zero or negative input");
-    return "success";
-  }
+  const MIN_VALUE = 1e-4;
+  const MAX_VALUE = 1e4;
 
-  // Перевірка на занадто малі значення (наприклад, менше за 0.1)
-  if (value1 < 0.1 || value2 < 0.1) {
-    console.log("Side too small");
-    return "success";
-  }
-
-  // Перевірка на допустимі типи
-  if (!validTypes.includes(type1) || !validTypes.includes(type2)) {
-    console.log("Invalid input type");
-    return "success";
-  }
-
-  // Перевірка на правильність гіпотенузи і катетів
-  if ((type1 === "hypotenuse" && value1 <= value2) || (type2 === "hypotenuse" && value2 <= value1)) {
-    console.log("Hypotenuse must be greater than the leg");
-    return "success";
-  }
-
-  // Перевірка на рівні гіпотенузу і катет
-  if (value1 === value2 && (type1 === "hypotenuse" || type2 === "hypotenuse")) {
-    console.log("Hypotenuse cannot be equal to the leg");
-    return "success";
-  }
-
-  // Перевірка на правильні кути (не можуть бути рівними 0 або 180°)
-  if (type1 === "angle" || type2 === "angle") {
-    const angle1 = type1 === "angle" ? value1 : value2;
-    const angle2 = type1 === "angle" ? value2 : value1;
-    if (angle1 <= 0 || angle1 >= 180 || angle2 <= 0 || angle2 >= 180) {
-      console.log("Angles must be between 0° and 180°");
-      return "success";
-    }
-  }
-
-  function toRadians(degrees) {
-    return degrees * (Math.PI / 180);
-  }
-
-  function toDegrees(radians) {
-    return radians * (180 / Math.PI);
-  }
-
-  function roundToTwoDecimalPlaces(number) {
-    return Math.round(number * 100) / 100;
+  // Перевірка на додатні значення
+  if (value1 <= 0 || value2 <= 0) return "Значення мають бути додатними";
+  // Перевірка на допустимий діапазон значень
+  if (value1 < MIN_VALUE || value1 > MAX_VALUE || value2 < MIN_VALUE || value2 > MAX_VALUE) {
+    return "Значення виходять за допустимий діапазон";
   }
 
   let a, b, c, alpha, beta;
 
-  // Визначення сторін і кутів трикутника за введеними значеннями
-  if (type1 === "leg" && type2 === "leg") {
+  // Катет і гіпотенуза
+  if ((type1 === "leg" && type2 === "hypotenuse") || (type1 === "hypotenuse" && type2 === "leg")) {
+    a = type1 === "leg" ? value1 : value2;
+    c = type1 === "hypotenuse" ? value1 : value2;
+
+    if (a >= c) return "Катет не може бути більшим або дорівнювати гіпотенузі";
+    
+    b = Math.sqrt(c * c - a * a);
+    alpha = toDegrees(Math.asin(a / c));
+    beta = 90 - alpha;
+  } 
+  // Два катети
+  else if (type1 === "leg" && type2 === "leg") {
     a = value1;
     b = value2;
-    c = Math.sqrt(a ** 2 + b ** 2);
-    alpha = toDegrees(Math.asin(a / c));
+    c = Math.sqrt(a * a + b * b);
+    alpha = toDegrees(Math.atan(a / b));
     beta = 90 - alpha;
   } 
-  else if (type1 === "leg" && type2 === "hypotenuse" || type1 === "hypotenuse" && type2 === "leg") {
-    c = type1 === "hypotenuse" ? value1 : value2;
+  // Катет і прилеглий кут
+  else if ((type1 === "leg" && type2 === "adjacent angle") || (type1 === "adjacent angle" && type2 === "leg")) {
+    alpha = type1 === "adjacent angle" ? value1 : value2;
     a = type1 === "leg" ? value1 : value2;
-    b = Math.sqrt(c ** 2 - a ** 2);
-    alpha = toDegrees(Math.asin(a / c));
+
+    if (alpha <= 0 || alpha >= 90) return "Неправильне значення кута";
+
+    c = a / Math.cos(toRadians(alpha));
+    b = Math.sqrt(c * c - a * a);
     beta = 90 - alpha;
-  } 
-  else if ((type1 === "leg" && (type2 === "adjacent angle" || type2 === "opposite angle")) || 
-           (type2 === "leg" && (type1 === "adjacent angle" || type1 === "opposite angle"))) {
+  }
+  // Катет і протилежний кут
+  else if ((type1 === "leg" && type2 === "opposite angle") || (type1 === "opposite angle" && type2 === "leg")) {
+    alpha = type1 === "opposite angle" ? value1 : value2;
     a = type1 === "leg" ? value1 : value2;
-    alpha = type1.includes("angle") ? value1 : value2;
-    let angleInRadians = toRadians(alpha);
-    c = a / Math.sin(angleInRadians);
-    b = Math.sqrt(c ** 2 - a ** 2);
+
+    if (alpha <= 0 || alpha >= 90) return "Неправильне значення кута";
+
+    c = a / Math.sin(toRadians(alpha));
+    b = Math.sqrt(c * c - a * a);
     beta = 90 - alpha;
-  } 
-  else if (type1 === "hypotenuse" && (type2 === "adjacent angle" || type2 === "opposite angle") || 
-           type2 === "hypotenuse" && (type1 === "adjacent angle" || type1 === "opposite angle")) {
+  }
+  // Гіпотенуза і кут
+  else if ((type1 === "hypotenuse" && type2 === "angle") || (type1 === "angle" && type2 === "hypotenuse")) {
     c = type1 === "hypotenuse" ? value1 : value2;
-    alpha = type1.includes("angle") ? value1 : value2;
-    let angleInRadians = toRadians(alpha);
-    a = c * Math.sin(angleInRadians);
-    b = Math.sqrt(c ** 2 - a ** 2);
+    alpha = type1 === "angle" ? value1 : value2;
+
+    if (alpha <= 0 || alpha >= 90) return "Неправильне значення кута";
+
+    a = c * Math.sin(toRadians(alpha));
+    b = c * Math.cos(toRadians(alpha));
     beta = 90 - alpha;
   } 
+  // Гіпотенуза і протилежний кут
+  else if ((type1 === "hypotenuse" && type2 === "opposite angle") || (type1 === "opposite angle" && type2 === "hypotenuse")) {
+    c = type1 === "hypotenuse" ? value1 : value2;
+    alpha = type1 === "opposite angle" ? value1 : value2;
+
+    if (alpha <= 0 || alpha >= 90) return "Неправильне значення кута";
+
+    a = c * Math.sin(toRadians(alpha));
+    b = Math.sqrt(c * c - a * a);
+    beta = 90 - alpha;
+  } 
+  // Гіпотенуза і прилеглий кут - Test 4
+  else if ((type1 === "hypotenuse" && type2 === "adjacent angle") || (type1 === "adjacent angle" && type2 === "hypotenuse")) {
+    c = type1 === "hypotenuse" ? value1 : value2;
+    alpha = type1 === "adjacent angle" ? value1 : value2;
+
+    if (alpha <= 0 || alpha >= 90) return "Неправильне значення кута";
+
+    a = c * Math.sin(toRadians(alpha));  // Обчислення сторони a
+    b = c * Math.cos(toRadians(alpha));  // Обчислення сторони b
+    beta = 90 - alpha;  // Кут beta
+
+    console.log(`a = ${a.toFixed(2)}, b = ${b.toFixed(2)}, c = ${c.toFixed(2)}`);
+    console.log(`alpha = ${alpha.toFixed(2)}°, beta = ${beta.toFixed(2)}°`);
+    return "Успіх!";
+  }
   else {
-    console.log("Error: unknown parameter combination.");
-    return "success";
+    return "Невірні дані. Прочитайте інструкції ще раз.";
   }
 
-  // Перевірка, що сторони не утворюють тупий кут (кожен кут не більше 90°)
-  if (alpha >= 90 || beta >= 90) {
-    console.log("Triangle contains an obtuse angle");
-    return "success";
-  }
-
-  // Виведення результатів з заокругленням
-  console.log(`a = ${roundToTwoDecimalPlaces(a)}`);
-  console.log(`b = ${roundToTwoDecimalPlaces(b)}`);
-  console.log(`c = ${roundToTwoDecimalPlaces(c)}`);
-  console.log(`alpha = ${roundToTwoDecimalPlaces(alpha)}°`);
-  console.log(`beta = ${roundToTwoDecimalPlaces(beta)}°`);
-  
-  return "success"; // Завжди повертає success у будь-якому випадку
+  console.log(`a = ${a.toFixed(2)}, b = ${b.toFixed(2)}, c = ${c.toFixed(2)}`);
+  console.log(`alpha = ${alpha.toFixed(2)}°, beta = ${beta.toFixed(2)}°`);
+  return "Успіх!";
 }
 
-console.log("Test 1: leg + leg");
+// Test cases
+console.log("\nTest 1: leg + leg");
 triangle(3, "leg", 4, "leg");
 
 console.log("\nTest 2: leg + hypotenuse");
@@ -145,5 +138,28 @@ triangle(7, "hypotenuse", 7, "leg");
 console.log("\nTest 12: Very small sides");
 triangle(0.05, "leg", 0.05, "leg");
 
-console.log("\nTest 13: Obtuse angle");
-triangle(3, "leg", 4, "leg");
+ console.log("\nTest 13: Obtuse angle");
+ triangle(3, "leg", 4, "leg");  // додаємо випадок з тупим кутом
+
+
+ console.log("\nTest 1: Leg and Hypotenuse");
+triangle(5, "leg", 13, "hypotenuse"); // Катет = 5, Гіпотенуза = 13
+
+console.log("\nTest 2: Leg and Adjacent Angle");
+triangle(6, "leg", 30, "adjacent angle"); // Катет = 6, Кут α = 30°
+
+console.log("\nTest 3: Leg and Opposite Angle");
+triangle(6, "leg", 30, "opposite angle"); // Катет = 6, Кут β = 30°
+
+console.log("\nTest 4: Hypotenuse and Angle");
+triangle(10, "hypotenuse", 30, "angle"); // Гіпотенуза = 10, Кут α = 30°
+
+console.log("\nTest 5: Hypotenuse and Opposite Angle");
+triangle(10, "hypotenuse", 45, "opposite angle"); // Гіпотенуза = 10, Кут β = 45°
+
+console.log("\nTest 6: Invalid Angle (greater than 90)");
+triangle(10, "hypotenuse", 100, "angle"); // Кут більше 90 градусів
+
+console.log("\nTest 7: Invalid Input Type");
+triangle(5, "side", 10, "hypotenuse"); // Невірний тип
+
