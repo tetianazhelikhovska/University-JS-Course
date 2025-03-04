@@ -149,28 +149,53 @@ class Rectangle extends Square {
 }
 
 class Rhombus extends Square {
-    constructor(a, alpha, beta) {
-        super(a); //сторона ромба
-        this.alpha = alpha; // тупий кут ромба
-        this.beta = beta; //гострий кут
-    }
+  constructor(a, alpha, beta) {
+      super(a); //сторона ромба
+      this._alpha = alpha; // тупий кут ромба
+      this._beta = beta; //гострий кут
+  }
 
-    static help() {
-        console.log("Rhombus: four equal sides, opposite angles are equal.");
-    }
+  static help() {
+      console.log("Rhombus: four equal sides, opposite angles are equal.");
+  }
 
-    square() {
-        let radAlpha = (this.alpha * Math.PI) / 180;
-        console.log(`Area: ${this.a ** 2 * Math.sin(radAlpha)}`);
-    }
+  get alpha() {
+      return this._alpha; // геттер для кута alpha
+  }
 
-    info() {
-        console.log(`Sides: ${this.a}, ${this.a}, ${this.a}, ${this.a}`);
-        console.log(`Angles: ${this.alpha}, ${this.beta}, ${this.alpha}, ${this.beta}`);
-        this.length();
-        this.square();
-    }
+  set alpha(value) {
+      if (value > 0 && value < 180) {
+          this._alpha = value; // сеттер для кута alpha з перевіркою
+      } else {
+          console.log("Alpha angle must be between 0 and 180 degrees.");
+      }
+  }
+
+  get beta() {
+      return this._beta; // геттер для кута beta
+  }
+
+  set beta(value) {
+      if (value > 0 && value < 180) {
+          this._beta = value; // сеттер для кута beta з перевіркою
+      } else {
+          console.log("Beta angle must be between 0 and 180 degrees.");
+      }
+  }
+
+  square() {
+      let radAlpha = (this._alpha * Math.PI) / 180;
+      console.log(`Area: ${this.a ** 2 * Math.sin(radAlpha)}`);
+  }
+
+  info() {
+      console.log(`Sides: ${this.a}, ${this.a}, ${this.a}, ${this.a}`);
+      console.log(`Angles: ${this._alpha}, ${this._beta}, ${this._alpha}, ${this._beta}`);
+      this.length();
+      this.square();
+  }
 }
+
 
 class Parallelogram extends Rectangle {
     constructor(a, b, alpha, beta) {
