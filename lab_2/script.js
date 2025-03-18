@@ -7,11 +7,10 @@
 let car1 = new Object();
 car1.color = "blue";
 car1.maxSpeed = 100;
-car1.driver = {
-    name: "Tania Luc",
-    category: "A",
-    personalLimitations: null
-};
+car1.driver = new Object(); // використання new Object() для вкладеного об'єкта
+car1.driver.name = "Tania Luc";
+car1.driver.category = "A";
+car1.driver.personalLimitations = null;
 car1.tuning = true;
 car1["number of accidents"] = 0;
 
