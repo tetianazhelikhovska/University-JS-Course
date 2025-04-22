@@ -14,11 +14,11 @@ const denseArray = generateArray(100);
 const sparseArray = generateArray(100, true);
 
 console.log("====== ПРИКЛАД НА ЩІЛЬНОМУ МАСИВІ ======");
-SortingLibrary.bubbleSort(denseArray, true);
-SortingLibrary.selectionSort(denseArray, true);
-SortingLibrary.insertionSort(denseArray, true);
-SortingLibrary.shellSort(denseArray, true);
-SortingLibrary.quickSort(denseArray, true);
+console.log(SortingLibrary.bubbleSort(denseArray, true));
+console.log(SortingLibrary.selectionSort(denseArray, true));
+console.log(SortingLibrary.insertionSort(denseArray, true));
+console.log(SortingLibrary.shellSort(denseArray, true));
+console.log(SortingLibrary.quickSort(denseArray, true));
 
 console.log("\n====== ПРИКЛАД НА РОЗРІДЖЕНОМУ МАСИВІ ======");
 SortingLibrary.bubbleSort(sparseArray, false);
