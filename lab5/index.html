@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Click Challenge</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="menu-screen">
+    <h1>Pixel Click Challenge</h1>
+  
+    <label for="difficultySelect">Оберіть складність:</label>
+    <select id="difficultySelect">
+      <option value="easy">Легкий рівень</option>
+      <option value="medium">Середній рівень</option>
+      <option value="hard">Важкий рівень</option>
+    </select>
+  
+    <label for="colorSelect">Оберіть колір:</label>
+    <select id="colorSelect">
+      <option value="red">Червоний</option>
+      <option value="green">Зелений</option>
+      <option value="blue">Синій</option>
+      <option value="yellow">Жовтий</option>
+      <option value="purple">Фіолетовий</option>
+    </select>
+  
+    <button class="playButton">Почати гру</button>
+  </div>
+  
+  <div class="game-screen">
+    <div class="game-field"></div>
+    <div class="hud">
+      <h2>Очки: <span id="pointsCounter">0</span></h2>
+      <h2>Час: <span id="timerCounter">0</span></h2>
+    </div>
+  </div>
+  
+ 
+  <div id="gameOverModal" class="modal">
+    <div class="modal-content">
+      <h2>Гру завершено!</h2>
+      <p>Ваш результат: <span id="finalPoints">0</span></p>
+      <div class="modal-buttons">
+        <button id="retryBtn">Спробувати знову</button>
+        <button id="menuBtn">Повернутись до меню</button>
+      </div>
+    </div>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>
