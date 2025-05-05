@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Lights Out</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Lights Out</h1>
+
+  <div>
+    <button onclick="loadLevel('a')">Рівень A</button>
+    <button onclick="loadLevel('b')">Рівень B</button>
+    <button onclick="loadLevel('c')">Рівень C</button>
+  </div>
+
+  <p id="moves">Кроків: 0</p>
+  <div id="game"></div>
+  <p id="winMessage" style="font-weight: bold; color: green;"></p>
+
+  <script src="script.js"></script>
+</body>
+</html>
