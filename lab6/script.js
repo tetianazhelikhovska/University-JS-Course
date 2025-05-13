@@ -7,25 +7,25 @@ let grid = [];
 let moveCount = 0;
 let timer = 0;
 let timerInterval;
-let levelId = ''; // Поточний рівень
+let currentLevel = ''; // Поточний рівень
 let minMoves = 0; // Мінімальна кількість кроків для виграшу
 
-// Створюємо таймер
-function startTimer() {
-  timerInterval = setInterval(() => {
-    timer++;
-    timeDisplay.textContent = `Час: ${timer} сек`;
-  }, 1000);
+// Завантаження рівня з JSON
+async function loadLevel(levelId) {
+  const res = await fetch('data/levels.json');
+  const levels = await res.json();
+  const level = levels[levelId];
+  if (level) {
+    currentLevel = levelId;
+    createGrid(level);
+  } else {
+    alert('Рівень не знайдено');
+  }
 }
 
-// Зупиняємо таймер
-function stopTimer() {
-  clearInterval(timerInterval);
-}
-
-// Створення сітки на основі даних
+// Створюємо сітку на основі даних рівня
 function createGrid(data) {
-  grid = data.map(row => row.slice());
+  grid = data.map(row => row.slice()); // Копіюємо рівень
   renderGrid();
   moveCount = 0;
   minMoves = calculateMinMoves(data);
@@ -38,7 +38,7 @@ function createGrid(data) {
 
 // Малюємо сітку
 function renderGrid() {
-  gameContainer.innerHTML = '';
+  gameContainer.innerHTML = ''; // Очищаємо попереднє
   for (let i = 0; i < 5; i++) {
     for (let j = 0; j < 5; j++) {
       const cell = document.createElement('div');
@@ -56,7 +56,7 @@ function handleClick(e) {
   const row = parseInt(e.target.dataset.row);
   const col = parseInt(e.target.dataset.col);
 
-  toggle(row, col);
+  toggle(row, col); // Змінюємо стан клітинки
   toggle(row - 1, col);
   toggle(row + 1, col);
   toggle(row, col - 1);
@@ -100,17 +100,16 @@ function calculateMinMoves(data) {
   return minMoves;
 }
 
-// Завантаження рівня з JSON
-async function loadLevel(levelIdParam) {
-  const res = await fetch('data/levels.json');
-  const levels = await res.json();
-  const level = levels[levelIdParam];
-  if (level) {
-    levelId = levelIdParam;
-    createGrid(level);
-  } else {
-    alert('Рівень не знайдено');
-  }
+// Таймер
+function startTimer() {
+  timerInterval = setInterval(() => {
+    timer++;
+    timeDisplay.textContent = `Час: ${timer} сек`;
+  }, 1000);
+}
+
+function stopTimer() {
+  clearInterval(timerInterval);
 }
 
 // Початок нової гри з випадковим рівнем (відмінним від поточного)
@@ -119,12 +118,12 @@ function startNewGame() {
   let randomLevel;
   do {
     randomLevel = levels[Math.floor(Math.random() * levels.length)];
-  } while (randomLevel === levelId); // Перевірка, щоб рівень не був поточним
+  } while (randomLevel === currentLevel); // Перевірка, щоб рівень не був поточним
 
   loadLevel(randomLevel);
 }
 
 // Рестарт поточного рівня
 function restartLevel() {
-  loadLevel(levelId);
+  loadLevel(currentLevel);
 }
