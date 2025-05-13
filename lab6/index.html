@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Lights Out</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <h1>Lights Out</h1>
-
+  <select id="levelSelect"></select>
   <div>
-    <button onclick="startNewGame()">Нова гра</button>
-    <button onclick="restartLevel()">Рестарт</button>
+    <button id="restartBtn">Restart</button>
+    <button id="newGameBtn">New Game</button>
   </div>
+  <div id="gameBoard"></div>
+  <p id="stepCounter">Кроків: 0</p>
+  <p id="timer">Час: 0 сек</p>
 
-  <p id="moves">Кроків: 0</p>
-  <p id="time">Час: 0</p> <!-- Таймер -->
-  <div id="game"></div>
-  <p id="winMessage" style="font-weight: bold; color: green;"></p>
-
-  <script src="script.js"></script>
+  <script src="script.js" type="module"></script>
 </body>
 </html>
