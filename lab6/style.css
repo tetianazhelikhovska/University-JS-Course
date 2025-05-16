@@ -35,13 +35,12 @@ button {
   background-color: #5C54C7;
   color: white;
   border: none;
-  border-radius: 16px;
+  border-radius: 7px;
   font-size: 16px;
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 button:hover {
-  background-color: #45a049;
   transform: scale(1.05);
 }
 
@@ -49,4 +48,23 @@ button:hover {
 #stepCounter, #timer {
   font-size: 18px;
   margin: 10px;
+}
+
+#infoBox {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 10px 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  text-align: left;
+  z-index: 1000;
+}
+
+#infoBox div {
+  margin: 5px 0;
+  font-size: 16px;
+  color: #333;
 }
