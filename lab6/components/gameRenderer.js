@@ -1,4 +1,4 @@
-import { gameLogic } from './gameLogic.js';
+import { gameLogic } from './gameRules.js';
 import { ui } from './ui.js';
 
 export const gameRenderer = {
