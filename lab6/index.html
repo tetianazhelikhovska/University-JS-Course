@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lights Out</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3103/3103451.png" />
+</head>
+<body>
+  <h1>Lights Out</h1>
+  <select id="levelSelect"></select>
+  <div>
+    <button id="restartBtn">Restart</button>
+    <button id="newGameBtn">New Game</button>
+  </div>
+  <div id="gameBoard"></div>
+  <p id="stepCounter">Кроків: 0</p>
+  <p id="timer">Час: 0 сек</p>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script type="module" src="./index.js"></script>
+</body>
+</html>
