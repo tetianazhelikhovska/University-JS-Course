@@ -7,19 +7,25 @@
 </head>
 <body>
   <h1>Lights Out</h1>
-  <select id="levelSelect"></select>
-  <div>
-    <button id="restartBtn">Restart</button>
-    <button id="newGameBtn">New Game</button>
-  </div>
-  <div id="gameBoard"></div>
- <div id="infoBox">
-  <div id="stepCounter">Steps: 0</div>
-  <div id="timer">Time: 0</div>
-</div>
 
+  <div id="controls">
+    <select id="levelSelect"></select>
+
+    <div>
+      <button id="restartBtn">Restart</button>
+      <button id="newGameBtn">New Game</button>
+    </div>
+  </div>
+
+  <div id="gameBoard"></div>
+
+  <div id="infoBox">
+    <div id="stepCounter">Steps: 0</div>
+    <div id="timer">Time: 0</div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script type="module" src="./index.js"></script>
 </body>
+
 </html>
