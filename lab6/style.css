@@ -18,6 +18,7 @@ body {
 
 select {
    width: 250px;
+  
   padding: 10px 15px;
   font-size: 16px;
   border-radius: 5px;
@@ -40,6 +41,7 @@ select:focus {
   cursor: pointer;
   border: 1px solid #ccc;
   transition: transform 0.1s;
+  border-radius: 5px;
 }
 
 .cell:hover {
@@ -52,12 +54,12 @@ select:focus {
 
 button {
   margin: 10px;
-  padding: 10px 20px;
+  padding: 10px 10px;
   cursor: pointer;
   background-color: #5C54C7;
   color: white;
   border: none;
-  border-radius: 15px;
+  border-radius: 5px;
   font-size: 16px;
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
