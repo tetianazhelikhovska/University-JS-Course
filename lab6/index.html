@@ -3,20 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <title>Lights Out</title>
-  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <h1>Lights Out</h1>
-  <select id="levelSelect"></select>
-  <div>
-    <button id="restartBtn">Restart</button>
-    <button id="newGameBtn">New Game</button>
-  </div>
-  <div id="gameBoard"></div>
-  <p id="stepCounter">Кроків: 0</p>
-  <p id="timer">Час: 0 сек</p>
+  <div class="container">
+    <h1>Lights Out</h1>
 
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script type="module" src="./index.js"></script>
+    <div class="controls">
+      <div class="dropdown-container">
+        <label for="levelSelect">Вибір рівня:</label>
+        <select id="levelSelect">
+          <option value="1">Початковий рівень</option>
+          <option value="2">Рівень 2</option>
+          <option value="3">Складний рівень</option>
+        </select>
+      </div>
+
+      <button id="resetButton">Скинути</button>
+    </div>
+
+    <div id="gameBoard"></div>
+
+    <div class="info-box">
+      <p>Кроків: <span id="stepCount">0</span></p>
+      <p>Час: <span id="timer">0</span> сек</p>
+    </div>
+  </div>
 </body>
 </html>
