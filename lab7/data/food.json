@@ -1,0 +1,37 @@
+{
+  "category": "Їжа",
+  "items": [
+    {
+      "id": 1,
+      "name": "Піца",
+      "shortname": "pizza",
+      "description": "Lorem ipsum dolor sit amet.",
+      "price": "100 грн",
+      "photo": "photos/food/pizza.png"
+    },
+    {
+      "id": 2,
+      "name": "Бургер",
+      "shortname": "burger",
+      "description": "Lorem ipsum dolor sit amet.",
+      "price": "80 грн",
+      "photo": "photos/food/burger.png"
+    },
+    {
+      "id": 3,
+      "name": "Салат",
+      "shortname": "salad",
+      "description": "Lorem ipsum dolor sit amet.",
+      "price": "60 грн",
+      "photo": "photos/food/salad.png"
+    },
+    {
+      "id": 4,
+      "name": "Суп",
+      "shortname": "soup",
+      "description": "Lorem ipsum dolor sit amet.",
+      "price": "50 грн",
+      "photo": "photos/food/soup.png"
+    }
+  ]
+}
