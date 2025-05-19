@@ -7,7 +7,7 @@
       "shortname": "coffee",
       "description": "Lorem ipsum dolor sit amet.",
       "price": "30 грн",
-      "photo": "photos/drinks/coffee.png"
+      "photo": "photos/drinks/coffee.jpg"
     },
     {
       "id": 2,
@@ -15,7 +15,7 @@
       "shortname": "tea",
       "description": "Lorem ipsum dolor sit amet.",
       "price": "25 грн",
-      "photo": "photos/drinks/tea.png"
+      "photo": "photos/drinks/tea.jpg"
     },
     {
       "id": 3,
@@ -23,7 +23,7 @@
       "shortname": "juice",
       "description": "Lorem ipsum dolor sit amet.",
       "price": "20 грн",
-      "photo": "photos/drinks/juice.png"
+      "photo": "photos/drinks/juice.jpg"
     },
     {
       "id": 4,
@@ -31,7 +31,7 @@
       "shortname": "water",
       "description": "Lorem ipsum dolor sit amet.",
       "price": "15 грн",
-      "photo": "photos/drinks/water.png"
+      "photo": "photos/drinks/water.jpg"
     }
   ]
 }
