@@ -7,7 +7,7 @@
       "shortname": "haircut",
       "description": "Lorem ipsum dolor sit amet.",
       "price": "150 грн",
-      "photo": "photos/services/haircut.png"
+      "photo": "photos/services/haircut.jpg"
     },
     {
       "id": 2,
@@ -15,7 +15,7 @@
       "shortname": "manicure",
       "description": "Lorem ipsum dolor sit amet.",
       "price": "120 грн",
-      "photo": "photos/services/manicure.png"
+      "photo": "photos/services/manicure.jpg"
     },
     {
       "id": 3,
@@ -23,7 +23,7 @@
       "shortname": "massage",
       "description": "Lorem ipsum dolor sit amet.",
       "price": "200 грн",
-      "photo": "photos/services/massage.png"
+      "photo": "photos/services/massage.jpg"
     },
     {
       "id": 4,
@@ -31,7 +31,7 @@
       "shortname": "fitness",
       "description": "Lorem ipsum dolor sit amet.",
       "price": "250 грн",
-      "photo": "photos/services/fitness.png"
+      "photo": "photos/services/fitness.jpg"
     }
   ]
 }
