@@ -7,7 +7,7 @@
       "shortname": "pizza",
       "description": "Lorem ipsum dolor sit amet.",
       "price": "100 грн",
-      "photo": "photos/food/pizza.png"
+      "photo": "photos/food/pizza.jpg"
     },
     {
       "id": 2,
@@ -15,7 +15,7 @@
       "shortname": "burger",
       "description": "Lorem ipsum dolor sit amet.",
       "price": "80 грн",
-      "photo": "photos/food/burger.png"
+      "photo": "photos/food/burger.jpg"
     },
     {
       "id": 3,
@@ -23,7 +23,7 @@
       "shortname": "salad",
       "description": "Lorem ipsum dolor sit amet.",
       "price": "60 грн",
-      "photo": "photos/food/salad.png"
+      "photo": "photos/food/salad.jpg"
     },
     {
       "id": 4,
@@ -31,7 +31,7 @@
       "shortname": "soup",
       "description": "Lorem ipsum dolor sit amet.",
       "price": "50 грн",
-      "photo": "photos/food/soup.png"
+      "photo": "photos/food/soup.jpg"
     }
   ]
 }
