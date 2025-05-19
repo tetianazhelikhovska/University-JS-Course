@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Напої",
+    "shortname": "drinks",
+    "notes": "Lorem ipsum dolor sit amet."
+  },
+  {
+    "id": 2,
+    "name": "Їжа",
+    "shortname": "food",
+    "notes": "Lorem ipsum dolor sit amet."
+  },
+  {
+    "id": 3,
+    "name": "Послуги",
+    "shortname": "services",
+    "notes": "Lorem ipsum dolor sit amet."
+  }
+]
