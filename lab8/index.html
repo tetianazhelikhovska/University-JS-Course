@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Лабораторна адаптивна сторінка</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Навігація -->
+  <nav class="navbar">
+    <div>Лого</div>
+    <div class="nav-links">
+      <a href="#" class="nav-link"><img src="imgs_icons/icons/home.png" alt="home"> Головна</a>
+      <a href="#" class="nav-link"><img src="imgs_icons/icons/i.png" alt="home"> Про нас</a>
+      <a href="#" class="nav-link"><img src="imgs_icons/icons/phone.png" alt="home"> Контакти</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </nav>
+  <div id="mobileMenu" class="mobile-menu">
+    <a href="#">Головна</a>
+    <a href="#">Про нас</a>
+    <a href="#">Контакти</a>
+  </div>
+
+  <!-- Карусель -->
+  <div class="carousel">
+    <div class="slides" id="slides">
+      <div class="slide"><img src="https://placehold.co/800x300?text=Slide+1" alt="Slide 1"></div>
+      <div class="slide"><img src="https://placehold.co/800x300?text=Slide+2" alt="Slide 2"></div>
+      <div class="slide"><img src="https://placehold.co/800x300?text=Slide+3" alt="Slide 3"></div>
+    </div>
+    <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+    <button class="next" onclick="moveSlide(1)">&#10095;</button>
+  </div>
+  <div class="indicators" id="indicators"></div>
+
+  <!-- Зображення для Large -->
+  <div class="images-large">
+    <img src="https://placehold.co/300x200?text=Large+1" alt="Large 1">
+    <img src="https://placehold.co/300x200?text=Large+2" alt="Large 2">
+    <img src="https://placehold.co/300x200?text=Large+3" alt="Large 3">
+    <img src="https://placehold.co/300x200?text=Large+4" alt="Large 4">
+  </div>
+
+  <!-- Зображення для Medium -->
+  <div class="images-medium">
+    <img src="https://placehold.co/300x200?text=Medium+1" alt="Medium 1">
+    <img src="https://placehold.co/300x200?text=Medium+2" alt="Medium 2">
+    <img src="https://placehold.co/300x200?text=Medium+3" alt="Medium 3">
+    <img src="https://placehold.co/300x200?text=Medium+4" alt="Medium 4">
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
